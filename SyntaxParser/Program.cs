@@ -5,13 +5,15 @@ namespace SyntaxParser
     {
         public static void Main()
         {
-            var text = "5.7 + 3 + log(4)";
+            var text = "log(2,3) / ln(1)";
 
             var list = Parser.Parse(text);
             foreach (var item in list)
             {
                 Console.WriteLine(item.Value);
             }
+
+            SyntaxAnalyzer.Analyze(list);
         }
 
     }

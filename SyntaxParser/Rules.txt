@@ -1,0 +1,29 @@
+﻿
+Expression = Value (OP Value)*
+
+Value = DIGIT | DEC | BracketBody | FuncOne | FuncTwo
+
+BracketBody = L_B Expression R_B
+
+FuncOne = FuncOneKW BracketBody
+
+FuncOneKW = SIN | COS | TAN | LN | EXP 
+
+FuncTwo =  FuncTwoKW L_B Expression COMMA Expression R_B
+
+FuncTwoKW = LOG | POW 
+
+
+DIGIT
+DEC
+COMMA
+OP
+L_B
+R_B
+SIN
+COS
+TAN
+LOG
+LN
+EXP
+POW
