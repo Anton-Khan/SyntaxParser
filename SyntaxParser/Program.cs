@@ -5,7 +5,7 @@ namespace SyntaxParser
     {
         public static void Main()
         {
-            var text = "log(2,3) / ln(1)";
+            var text = "sin(0.5) + cos(1.5) - ln(-123.0004) * log(1)/ exp(2) * pow(4,2)";//"log(2,3) / pow(1,5) + sin(-1) ";
 
             var list = Parser.Parse(text);
             foreach (var item in list)
@@ -13,7 +13,7 @@ namespace SyntaxParser
                 Console.WriteLine(item.Value);
             }
 
-            SyntaxAnalyzer.Analyze(list);
+            new Analyzer().Analyze(list); 
         }
 
     }
