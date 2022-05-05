@@ -51,6 +51,17 @@ namespace TestSyntaxParser
         }
 
         [TestMethod]
+        public void AnalizeFloatFuncWithConstantExpression()
+        {
+            var input = InputStorage.SimpleFloatFuncWithConstExpression.TokenList.Tokens;
+
+            bool expected = true;
+            bool actual = new Analyzer().Analyze(input);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
         public void AnalizeFuncExpression()
         {
             var input = InputStorage.FuncExpression.TokenList.Tokens;

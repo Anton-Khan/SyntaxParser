@@ -36,6 +36,34 @@ namespace TestSyntaxParser
             }))
         );
 
+        public static readonly Input SimpleFloatFuncWithConstExpression = new Input(
+            "0.5 + 1.5 * (-123.0004) / pow(PI,E) - log(2,8)",
+            new TokenList(new List<Token>(new Token[]
+            {
+                    new Token(Lexem.DOUBLE, "0.5"),
+                    new Token(Lexem.OP, "+"),
+                    new Token(Lexem.DOUBLE, "1.5"),
+                    new Token(Lexem.OP, "*"),
+                    new Token(Lexem.L_B, "("),
+                    new Token(Lexem.DOUBLE, "-123.0004"),
+                    new Token(Lexem.R_B, ")"),
+                    new Token(Lexem.OP, "/"),
+                    new Token(Lexem.POW, "pow"),
+                    new Token(Lexem.L_B, "("),
+                    new Token(Lexem.PI, "PI"),
+                    new Token(Lexem.COMMA, ","),
+                    new Token(Lexem.E, "E"),
+                    new Token(Lexem.R_B, ")"),
+                    new Token(Lexem.OP, "-"),
+                    new Token(Lexem.LOG, "log"),
+                    new Token(Lexem.L_B, "("),
+                    new Token(Lexem.INTEGER, "2"),
+                    new Token(Lexem.COMMA, ","),
+                    new Token(Lexem.INTEGER, "8"),
+                    new Token(Lexem.R_B, ")"),
+            }))
+        );
+
         public static readonly Input FuncExpression = new Input(
             "sin(0.5) + cos(1.5) - ln(-123.0004) * log(3,2.4)/ exp(2) * pow(4,2)",
             new TokenList(new List<Token>(new Token[]

@@ -53,6 +53,18 @@ namespace TestSyntaxParser
         }
 
         [TestMethod]
+        public void ParseFloatFuncWithConstantExpression()
+        {
+            var input = InputStorage.SimpleFloatFuncWithConstExpression;
+            string text = input.Text;
+            TokenList expected = input.TokenList;
+
+            TokenList actual = new TokenList(Parser.Parse(text));
+
+            Assert.AreEqual(true, actual.SameAs(expected));
+        }
+
+        [TestMethod]
         public void ParseFuncExpression()
         {
             var input = InputStorage.FuncExpression;
