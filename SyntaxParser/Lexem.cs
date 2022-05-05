@@ -17,8 +17,8 @@ namespace SyntaxParser
         public String Regexp { get; }
         public String Name { get; }
 
-        public static readonly Lexem DIGIT = new Lexem(@"^[-]?(0|[1-9][0-9]*)$", nameof(DIGIT));// ^[-]?((0|[1-9])[0-9]*[.])?[0-9]+
-        public static readonly Lexem DEC = new Lexem(@"^[-]?(0|[1-9][0-9]*)([.][0-9]*)?$", nameof(DEC));
+        public static readonly Lexem INTEGER = new Lexem(@"^[-]?(0|[1-9][0-9]*)$", nameof(INTEGER));// ^[-]?((0|[1-9])[0-9]*[.])?[0-9]+
+        public static readonly Lexem DOUBLE = new Lexem(@"^[-]?(0|[1-9][0-9]*)([.][0-9]*)?$", nameof(DOUBLE));
         public static readonly Lexem COMMA = new Lexem(@"^,$", nameof(COMMA));
         public static readonly Lexem ASSIGN_OP = new Lexem(@"^=$", nameof(ASSIGN_OP));
         public static readonly Lexem OP = new Lexem(@"^(\+|-|\*|\/)$", nameof(OP));
@@ -33,13 +33,14 @@ namespace SyntaxParser
         public static readonly Lexem POW = new Lexem("^pow$", nameof(POW));
 
         public static readonly Lexem COMPARE_OP = new Lexem(@"^(>=|<=|>|<|!=|==)$", "COMPARE_OP");
+        
 
         public static IEnumerable<Lexem> Values
         {
             get
             {
-                yield return DIGIT;
-                yield return DEC;
+                yield return INTEGER;
+                yield return DOUBLE;
                 yield return COMMA;
                 yield return OP;
                 yield return ASSIGN_OP;
@@ -58,6 +59,7 @@ namespace SyntaxParser
         }
 
         public static readonly Lexem NullableLexem = new Lexem("", nameof(NullableLexem));
+        public static readonly Lexem END = new Lexem(@"", nameof(END));
         public override string ToString() => Name;
     }
 }

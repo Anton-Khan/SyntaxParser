@@ -1,7 +1,7 @@
 ﻿
 Expression = Value (OP Value)*
 
-Value = DIGIT | DEC | BracketBody | FuncOne | FuncTwo
+Value = INTEGER | DOUBLE | BracketBody | FuncOne | FuncTwo
 
 BracketBody = L_B Expression R_B
 
@@ -14,8 +14,8 @@ FuncTwo =  FuncTwoKW L_B Expression COMMA Expression R_B
 FuncTwoKW = LOG | POW 
 
 
-DIGIT
-DEC
+INTEGER
+DOUBLE
 COMMA
 OP
 L_B

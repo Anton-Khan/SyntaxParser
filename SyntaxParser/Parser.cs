@@ -16,6 +16,7 @@ namespace SyntaxParser
             int iterator = 0;
             string subject = "";
             Token? tempToken = null;
+
             while (text.Length > 0)
             {
                 subject = subject + text[iterator];
@@ -38,9 +39,11 @@ namespace SyntaxParser
                 }
 
                 iterator++;
-
+                if (iterator >= text.Length)
+                {
+                    throw new Exception("Input isn\'t expression at all!\nCan\'t match Lexem!\nIterator >= Length of Input");
+                }
             }
-           
             return tokens;
         }
 

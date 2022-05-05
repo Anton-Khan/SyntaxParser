@@ -24,19 +24,25 @@ namespace SyntaxParser
                 tokens.AddRange((Token[])list.ToArray().Clone());
                 if (Expression() && iterator == tokens.Count)
                 {
+                    Console.BackgroundColor = ConsoleColor.Green;
                     Console.WriteLine("OK!");
+                    Console.BackgroundColor = ConsoleColor.Black;
                     return true;
                 }
                 else
                 {
+                    Console.BackgroundColor = ConsoleColor.Red;
                     Console.WriteLine("Bad!");
+                    Console.BackgroundColor = ConsoleColor.Black;
                     return false;
                 }
                
             }
             catch (Exception e)
             {
+                Console.BackgroundColor = ConsoleColor.Red;
                 Console.WriteLine(e.Message);
+                Console.BackgroundColor = ConsoleColor.Black;
                 return false;
             }
         }
@@ -50,26 +56,29 @@ namespace SyntaxParser
                     {
                         try
                         {
-                            Op();
+                            if (!Op())
+                            {
+                                return true;
+                            }
                         }
                         catch (LangException t)
                         {
-                            Console.WriteLine("(OP VALUE) in Expression ended  " + t.Message);
+                            Console.WriteLine("(OP VALUE) in Expression ended {" + t.Message + "}");
                             return true;
                         }
                         if (!Value())
                         {
-                            break;
+                            return false;
                         }
                     }
-
-                    return true;
                 }
                 return false;
             }
             catch (LangException e)
             {
+                Console.BackgroundColor = ConsoleColor.Red;
                 Console.WriteLine(e.Message);
+                Console.BackgroundColor = ConsoleColor.Black;
                 return false;   
             }
         }
@@ -104,7 +113,9 @@ namespace SyntaxParser
             }
             catch (LangException e )
             {
+                Console.BackgroundColor = ConsoleColor.Red;
                 Console.WriteLine(e.Message);
+                Console.BackgroundColor = ConsoleColor.Black;
                 return false;
             }
         }
@@ -137,10 +148,6 @@ namespace SyntaxParser
             {
                 return true;
             }
-            else if (Log())
-            {
-                return true;
-            }
             else if (Exp())
             {
                 return true;
@@ -151,7 +158,7 @@ namespace SyntaxParser
 
         private static bool FuncTwo()
         {
-            return FuncTwoQuantifier() && LeftBracket() && Expression() && Comma() && Expression() && RightBracket();
+            return FuncTwoQuantifier() && LeftBracket() && Expression() & Comma() && Expression() && RightBracket();
         }
         private static bool FuncTwoQuantifier()
         {
@@ -168,12 +175,12 @@ namespace SyntaxParser
         }
         private static bool Digit()
         {
-            return Match(GetNextToken(), Lexem.DIGIT);
+            return Match(GetNextToken(), Lexem.INTEGER);
         }
 
         private static bool Decimal()
         {
-            return Match(GetNextToken(), Lexem.DEC);
+            return Match(GetNextToken(), Lexem.DOUBLE);
         }
         private static bool Comma()
         {
@@ -224,7 +231,9 @@ namespace SyntaxParser
         {
             if (currentToken.Lexem == requiredLexem)
             {
-                Console.WriteLine(currentToken.Lexem + " " + currentToken.Value + " -> " + iterator);
+                Console.BackgroundColor = ConsoleColor.Green;
+                Console.WriteLine(iterator + ") " + currentToken.Lexem + " " + currentToken.Value);
+                Console.BackgroundColor = ConsoleColor.Black;
                 return true;
             }
             Console.WriteLine(requiredLexem.ToString() + " expected, but " + currentToken.Lexem + "(" + currentToken.Value + ") found -> " + iterator);

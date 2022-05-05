@@ -21,5 +21,10 @@ namespace SyntaxParser
         {
             return Lexem == other.Lexem && Value == other.Value;
         }
+
+        public override string ToString()
+        {
+            return Lexem.ToString().PadRight(8) + Value;
+        }
     }
 }

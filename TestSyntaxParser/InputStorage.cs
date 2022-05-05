@@ -12,12 +12,12 @@ namespace TestSyntaxParser
             "1 + 5 * (-3)",
             new TokenList(new List<Token>(new Token[]
             {
-                new Token(Lexem.DIGIT, "1"),
+                new Token(Lexem.INTEGER, "1"),
                 new Token(Lexem.OP, "+"),
-                new Token(Lexem.DIGIT, "5"),
+                new Token(Lexem.INTEGER, "5"),
                 new Token(Lexem.OP, "*"),
                 new Token(Lexem.L_B, "("),
-                new Token(Lexem.DIGIT, "-3"),
+                new Token(Lexem.INTEGER, "-3"),
                 new Token(Lexem.R_B, ")"),
             }))
         );
@@ -26,55 +26,57 @@ namespace TestSyntaxParser
             "0.5 + 1.5 * (-123.0004)",
             new TokenList(new List<Token>(new Token[]
             {
-                    new Token(Lexem.DEC, "0.5"),
+                    new Token(Lexem.DOUBLE, "0.5"),
                     new Token(Lexem.OP, "+"),
-                    new Token(Lexem.DEC, "1.5"),
+                    new Token(Lexem.DOUBLE, "1.5"),
                     new Token(Lexem.OP, "*"),
                     new Token(Lexem.L_B, "("),
-                    new Token(Lexem.DEC, "-123.0004"),
+                    new Token(Lexem.DOUBLE, "-123.0004"),
                     new Token(Lexem.R_B, ")"),
             }))
         );
 
         public static readonly Input FuncExpression = new Input(
-            "sin(0.5) + cos(1.5) - ln(-123.0004) * log(1)/ exp(2) * pow(4,2)",
+            "sin(0.5) + cos(1.5) - ln(-123.0004) * log(3,2.4)/ exp(2) * pow(4,2)",
             new TokenList(new List<Token>(new Token[]
             {
                     new Token(Lexem.SIN, "sin"),
                     new Token(Lexem.L_B, "("),
-                    new Token(Lexem.DEC, "0.5"),
+                    new Token(Lexem.DOUBLE, "0.5"),
                     new Token(Lexem.R_B, ")"),
                     new Token(Lexem.OP, "+"),
             
                     new Token(Lexem.COS, "cos"),
                     new Token(Lexem.L_B, "("),
-                    new Token(Lexem.DEC, "1.5"),
+                    new Token(Lexem.DOUBLE, "1.5"),
                     new Token(Lexem.R_B, ")"),
                     new Token(Lexem.OP, "-"),
             
                     new Token(Lexem.LN, "ln"),
                     new Token(Lexem.L_B, "("),
-                    new Token(Lexem.DEC, "-123.0004"),
+                    new Token(Lexem.DOUBLE, "-123.0004"),
                     new Token(Lexem.R_B, ")"),
                     new Token(Lexem.OP, "*"),
             
                     new Token(Lexem.LOG, "log"),
                     new Token(Lexem.L_B, "("),
-                    new Token(Lexem.DIGIT, "1"),
+                    new Token(Lexem.INTEGER, "3"),
+                    new Token(Lexem.COMMA, ","),
+                    new Token(Lexem.DOUBLE, "2.4"),
                     new Token(Lexem.R_B, ")"),
                     new Token(Lexem.OP, "/"),
             
                     new Token(Lexem.EXP, "exp"),
                     new Token(Lexem.L_B, "("),
-                    new Token(Lexem.DIGIT, "2"),
+                    new Token(Lexem.INTEGER, "2"),
                     new Token(Lexem.R_B, ")"),
                     new Token(Lexem.OP, "*"),
             
                     new Token(Lexem.POW, "pow"),
                     new Token(Lexem.L_B, "("),
-                    new Token(Lexem.DIGIT, "4"),
+                    new Token(Lexem.INTEGER, "4"),
                     new Token(Lexem.COMMA, ","),
-                    new Token(Lexem.DIGIT, "2"),
+                    new Token(Lexem.INTEGER, "2"),
                     new Token(Lexem.R_B, ")"),
             }))
         );
