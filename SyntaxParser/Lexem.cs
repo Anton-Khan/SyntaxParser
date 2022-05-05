@@ -31,6 +31,8 @@ namespace SyntaxParser
         public static readonly Lexem LN = new Lexem("^ln$", nameof(LN));
         public static readonly Lexem EXP = new Lexem("^exp$", nameof(EXP));
         public static readonly Lexem POW = new Lexem("^pow$", nameof(POW));
+        public static readonly Lexem PI = new Lexem("^PI$", nameof(PI));
+        public static readonly Lexem E = new Lexem("^E$", nameof(E));
 
         public static readonly Lexem COMPARE_OP = new Lexem(@"^(>=|<=|>|<|!=|==)$", "COMPARE_OP");
         
@@ -53,6 +55,8 @@ namespace SyntaxParser
                 yield return LN;
                 yield return EXP;
                 yield return POW;
+                yield return PI;
+                yield return E;
 
                 yield return COMPARE_OP;
             }

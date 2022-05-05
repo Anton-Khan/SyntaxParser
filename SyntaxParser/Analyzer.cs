@@ -96,6 +96,14 @@ namespace SyntaxParser
                 {
                     return true;
                 }
+                else if (PI())
+                {
+                    return true;
+                }
+                else if (E())
+                {
+                    return true;
+                }
                 else if (BracketBody())
                 {
                     return true;
@@ -181,6 +189,16 @@ namespace SyntaxParser
         private static bool Decimal()
         {
             return Match(GetNextToken(), Lexem.DOUBLE);
+        }
+
+        private static bool E()
+        {
+            return Match(GetNextToken(), Lexem.E);
+        }
+
+        private static bool PI()
+        {
+            return Match(GetNextToken(), Lexem.PI);
         }
         private static bool Comma()
         {

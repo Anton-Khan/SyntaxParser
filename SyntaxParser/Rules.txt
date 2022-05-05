@@ -1,7 +1,6 @@
-﻿
-Expression = Value (OP Value)*
+﻿Expression = Value (OP Value)*
 
-Value = INTEGER | DOUBLE | BracketBody | FuncOne | FuncTwo
+Value = INTEGER | DOUBLE | PI | E | BracketBody | FuncOne | FuncTwo
 
 BracketBody = L_B Expression R_B
 
@@ -27,3 +26,6 @@ LOG
 LN
 EXP
 POW
+PI
+E
+

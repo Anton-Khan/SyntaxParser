@@ -25,7 +25,7 @@ namespace SyntaxParser
 
             while (tokens[pointer].Lexem != Lexem.END)
             {
-                if (tokens[pointer].Lexem == Lexem.INTEGER || tokens[pointer].Lexem == Lexem.DOUBLE)
+                if (tokens[pointer].Lexem == Lexem.INTEGER || tokens[pointer].Lexem == Lexem.DOUBLE || tokens[pointer].Lexem == Lexem.PI || tokens[pointer].Lexem == Lexem.E)
                 {
                     AddOperandToResult(tokens[pointer]);
                 }
@@ -73,7 +73,7 @@ namespace SyntaxParser
 
         private void AddOperandToResult(Token operand)
         {
-            if (operand.Lexem == Lexem.INTEGER || operand.Lexem == Lexem.DOUBLE )
+            if (operand.Lexem == Lexem.INTEGER || operand.Lexem == Lexem.DOUBLE || operand.Lexem == Lexem.PI || operand.Lexem == Lexem.E)
             {
                 result.Add(operand);
                 pointer++;

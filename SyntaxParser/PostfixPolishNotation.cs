@@ -37,11 +37,23 @@ namespace SyntaxParser
 
             while (Tokens.Count > pointer)
             {
-                if (Tokens[pointer].Lexem == Lexem.INTEGER || Tokens[pointer].Lexem == Lexem.DOUBLE)
+                if (Tokens[pointer].Lexem == Lexem.INTEGER || Tokens[pointer].Lexem == Lexem.DOUBLE || Tokens[pointer].Lexem == Lexem.PI || Tokens[pointer].Lexem == Lexem.E)
                 {
                     try
                     {
-                        var value = double.Parse(Tokens[pointer].Value.Replace(".", ","));
+                        double value = 0;
+                        if (Tokens[pointer].Lexem == Lexem.PI)
+                        {
+                            value = Math.PI;
+                        }
+                        else if (Tokens[pointer].Lexem == Lexem.E)
+                        {
+                            value = Math.E;
+                        }
+                        else
+                        {
+                            value = double.Parse(Tokens[pointer].Value.Replace(".", ","));
+                        }
                         stack.Push(value);
                         pointer++;
                     }
