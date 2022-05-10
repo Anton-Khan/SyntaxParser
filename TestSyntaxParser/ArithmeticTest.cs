@@ -73,7 +73,7 @@ namespace TestSyntaxParser
             if (new Analyzer().Analyze(parsedTokens))
             {
                 var postfixPolishNotation = new PostfixPolishNotation(parsedTokens);
-                var result = postfixPolishNotation.Solve(false);
+                var result = postfixPolishNotation.Solve(true);
                 Console.WriteLine(result);
                 return Math.Abs(expected - result) < expectedDelta;
             }
