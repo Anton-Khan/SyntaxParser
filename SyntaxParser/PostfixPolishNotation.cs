@@ -1,4 +1,6 @@
 ﻿
+using System.Globalization;
+
 namespace SyntaxParser
 {
     public class PostfixPolishNotation : DijkstraStackMachine
@@ -75,7 +77,7 @@ namespace SyntaxParser
                 }
                 else
                 {
-                    value = double.Parse(Tokens[pointer].Value.Replace(".", ","));
+                    value = double.Parse(Tokens[pointer].Value, new NumberFormatInfo() { NumberDecimalSeparator = "." });
                 }
                 stack.Push(value);
                 pointer++;
