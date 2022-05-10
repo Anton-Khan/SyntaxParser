@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace SyntaxParser
 {
     public class PostfixPolishNotation : DijkstraStackMachine
@@ -37,84 +32,21 @@ namespace SyntaxParser
 
             while (Tokens.Count > pointer)
             {
-                if (Tokens[pointer].Lexem == Lexem.INTEGER || Tokens[pointer].Lexem == Lexem.DOUBLE || Tokens[pointer].Lexem == Lexem.PI || Tokens[pointer].Lexem == Lexem.E)
+                if (Lexem.IsOperand(Tokens[pointer].Lexem))
                 {
-                    try
-                    {
-                        double value = 0;
-                        if (Tokens[pointer].Lexem == Lexem.PI)
-                        {
-                            value = Math.PI;
-                        }
-                        else if (Tokens[pointer].Lexem == Lexem.E)
-                        {
-                            value = Math.E;
-                        }
-                        else
-                        {
-                            value = double.Parse(Tokens[pointer].Value.Replace(".", ","));
-                        }
-                        stack.Push(value);
-                        pointer++;
-                    }
-                    catch (Exception e)
-                    {
-                        throw new StackMachineException("Can\'t parse value -> " + Tokens[pointer].ToString() + "\n" + e.Message);
-                    }
+                    HandleOperand(stack, ref pointer);
                 }
-                else if(Tokens[pointer].Lexem == Lexem.OP || IsFunctionOfTwo(Tokens[pointer]))
+                else if(Tokens[pointer].Lexem == Lexem.OP || Lexem.IsFunctionOfTwo(Tokens[pointer].Lexem))
                 {
-                    try
-                    {
-                        var value2 = stack.Pop();
-                        var value1 = stack.Pop();
-                        
-                        switch (Tokens[pointer].Value)
-                        {
-                            case "+": stack.Push(value1 + value2); break;
-                            case "-": stack.Push(value1 - value2); break;
-                            case "*": stack.Push(value1 * value2); break;
-                            case "/": stack.Push(value1 / value2); break;
-                            case "pow": stack.Push(Math.Pow(value1, value2)); break;
-                            case "log": stack.Push(Math.Log(value2, value1)); break;
-                        }
-                        if (showIntermediateCalculations)
-                        {
-                            //Console.WriteLine($"{showPointer++}) {value1} {Tokens[pointer].Value} {value2} = {stack.Peek()}");
-                            Console.WriteLine(showPointer + ")".PadRight(6 - showPointer++.ToString().Length) + $"{value1} {Tokens[pointer].Value} {value2} = {stack.Peek()}");
-                            
-                        }
-                        pointer++;
-                    }
-                    catch (Exception e)
-                    {
-                        throw new StackMachineException("Can\'t apply operation of Two -> " + Tokens[pointer].ToString() + "\n" + e.Message);
-                    }
+                    HandleOperationOfTwo(stack, ref pointer, showIntermediateCalculations, ref showPointer);
                 }
-                else if (IsFucntion(Tokens[pointer]))
+                else if (Lexem.IsFucntion(Tokens[pointer].Lexem) || Tokens[pointer].Lexem == Lexem.UNARYMINUS)
                 {
-                    try
-                    {
-                        var value = stack.Pop();
-                        switch (Tokens[pointer].Value)
-                        {
-                            case "sin": stack.Push(Math.Sin(value)); break;
-                            case "cos": stack.Push(Math.Cos(value)); break;
-                            case "tan": stack.Push(Math.Tan(value)); break;
-                            case "ln": stack.Push(Math.Log2(value)); break;
-                            case "exp": stack.Push(Math.Exp(value)); break;
-                        }
-                        if (showIntermediateCalculations)
-                        {
-                            //Console.WriteLine($"{showPointer++}) {Tokens[pointer].Value} {value} = {stack.Peek()}");
-                            Console.WriteLine(showPointer + ")".PadRight(6 - showPointer++.ToString().Length) + $"{Tokens[pointer].Value} {value} = {stack.Peek()}");
-                        }
-                        pointer++;
-                    }
-                    catch (Exception e)
-                    {
-                        throw new StackMachineException("Can\'t apply operation of One -> " + Tokens[pointer].ToString() + "\n" + e.Message);
-                    }
+                    HandleOperationOfOne(stack, ref pointer, showIntermediateCalculations, ref showPointer);
+                }
+                else
+                {
+                    throw new StackMachineException("Can\'t handle token " + Tokens[pointer].ToString());
                 }
             }
 
@@ -124,13 +56,89 @@ namespace SyntaxParser
             }
             else
             {
-                throw new StackMachineException("Stack has not only one value");
+                throw new StackMachineException("Stack has not only one value at the end of calculation");
             }
         }
 
-        private bool IsFunctionOfTwo(Token function)
+        private void HandleOperand(Stack<double> stack, ref int pointer)
         {
-            return function.Lexem == Lexem.LOG || function.Lexem == Lexem.POW;
+            try
+            {
+                double value = 0;
+                if (Tokens[pointer].Lexem == Lexem.PI)
+                {
+                    value = Math.PI;
+                }
+                else if (Tokens[pointer].Lexem == Lexem.E)
+                {
+                    value = Math.E;
+                }
+                else
+                {
+                    value = double.Parse(Tokens[pointer].Value.Replace(".", ","));
+                }
+                stack.Push(value);
+                pointer++;
+            }
+            catch (Exception e)
+            {
+                throw new StackMachineException("Can\'t parse value -> " + Tokens[pointer].ToString() + "\n" + e.Message);
+            }
+        }
+
+        private void HandleOperationOfTwo(Stack<double> stack, ref int pointer, bool showIntermediateCalculations, ref int showPointer)
+        {
+            try
+            {
+                var value2 = stack.Pop();
+                var value1 = stack.Pop();
+
+                switch (Tokens[pointer].Value)
+                {
+                    case "+": stack.Push(value1 + value2); break;
+                    case "-": stack.Push(value1 - value2); break;
+                    case "*": stack.Push(value1 * value2); break;
+                    case "/": stack.Push(value1 / value2); break;
+                    case "pow": stack.Push(Math.Pow(value1, value2)); break;
+                    case "log": stack.Push(Math.Log(value2, value1)); break;
+                }
+                if (showIntermediateCalculations)
+                {
+                    Console.WriteLine(showPointer + ")".PadRight(6 - showPointer++.ToString().Length) + $"{value1} {Tokens[pointer].Value} {value2} = {stack.Peek()}");
+                }
+                pointer++;
+            }
+            catch (Exception e)
+            {
+                throw new StackMachineException("Can\'t apply operation of Two -> " + Tokens[pointer].ToString() + "\n" + e.Message);
+            }
+        }
+
+        private void HandleOperationOfOne(Stack<double> stack, ref int pointer, bool showIntermediateCalculations, ref int showPointer)
+        {
+            try
+            {
+                var value = stack.Pop();
+
+                switch (Tokens[pointer].Value)
+                {
+                    case "sin": stack.Push(Math.Sin(value)); break;
+                    case "cos": stack.Push(Math.Cos(value)); break;
+                    case "tan": stack.Push(Math.Tan(value)); break;
+                    case "ln": stack.Push(Math.Log2(value)); break;
+                    case "exp": stack.Push(Math.Exp(value)); break;
+                    case "~": stack.Push(-value); break;
+                }
+                if (showIntermediateCalculations)
+                {
+                    Console.WriteLine(showPointer + ")".PadRight(6 - showPointer++.ToString().Length) + $"{Tokens[pointer].Value} {value} = {stack.Peek()}");
+                }
+                pointer++;
+            }
+            catch (Exception e)
+            {
+                throw new StackMachineException("Can\'t apply operation of One -> " + Tokens[pointer].ToString() + "\n" + e.Message);
+            }
         }
     }
 }

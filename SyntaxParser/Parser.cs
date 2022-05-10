@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace SyntaxParser
 {
@@ -12,29 +8,31 @@ namespace SyntaxParser
         public static List<Token> Parse(string text)
         {
             List<Token> tokens = new List<Token>();
-            text = text.Replace(" ", "") + " ";
+            text = "("+text.Replace(" ", "") + ") ";
             int iterator = 0;
             string subject = "";
             Token? tempToken = null;
 
             while (text.Length > 0)
             {
-                subject = subject + text[iterator];
+                subject += text[iterator];
                 if (subject == " ")
                     break;
-
+               
                 var matches = Match(subject);
 
-                if (matches.Item2.Lexem != Lexem.NullableLexem)
+                if (matches.Lexem != Lexem.NullableLexem)
                 {
-                    tempToken = matches.Item2;
+                    tempToken = matches;
                 }
                 else if (tempToken != null)
                 {
-                    tokens.Add(tempToken);
-                    text = text.Substring(tempToken.Value.Length);
-                    subject = "";
-                    iterator = -1;
+                    if (tempToken.Value == "-" && (tokens.Last().Lexem == Lexem.OP || tokens.Last().Lexem == Lexem.L_B || tokens.Last().Lexem == Lexem.COMMA || tokens.Last().Lexem == Lexem.UNARYMINUS) )
+                    {
+                        tempToken = new Token(Lexem.UNARYMINUS, "~");
+                    }
+
+                    AddNewToken(tokens, tempToken, ref text, ref subject, ref iterator);
                     tempToken = null;
                 }
 
@@ -45,6 +43,14 @@ namespace SyntaxParser
                 }
             }
             return tokens;
+        }
+
+        private static void AddNewToken(List<Token> tokens, Token tempToken, ref string text, ref string subject, ref int iterator)
+        {
+            tokens.Add(tempToken);
+            text = text.Substring(tempToken.Value.Length);
+            subject = "";
+            iterator = -1;
         }
 
         private static List<Token> TryMatch(string subject)
@@ -61,22 +67,21 @@ namespace SyntaxParser
             return matches;
         }
 
-        private static (bool, Token) Match(string subject)
+        private static Token Match(string subject)
         {
             var matchedTokens = TryMatch(subject);
 
             if (matchedTokens.Count == 0)
             {
-                return (false, new Token(Lexem.NullableLexem, ""));
+                return new Token(Lexem.NullableLexem, "");
             }
 
             if (matchedTokens.Count > 1)
             {
-                return (true, matchedTokens.First());
+                return matchedTokens.First();
             }
             
-            return (true, matchedTokens.First());
+            return matchedTokens.First();
         }
-
     }
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace SyntaxParser
 {
     public class DijkstraStackMachine
@@ -12,11 +7,11 @@ namespace SyntaxParser
         private List<Token> result;
         private int pointer;
 
-        public DijkstraStackMachine()
+        protected DijkstraStackMachine()
         {
-            this.stack = new Stack<Token>();
-            this.result = new List<Token>();
-            this.pointer = 0;
+            stack = new Stack<Token>();
+            result = new List<Token>();
+            pointer = 0;
         }
 
         protected List<Token> BuildPostfixPolishNotation(List<Token> tokens)
@@ -25,25 +20,29 @@ namespace SyntaxParser
 
             while (tokens[pointer].Lexem != Lexem.END)
             {
-                if (tokens[pointer].Lexem == Lexem.INTEGER || tokens[pointer].Lexem == Lexem.DOUBLE || tokens[pointer].Lexem == Lexem.PI || tokens[pointer].Lexem == Lexem.E)
+                if (Lexem.IsOperand(tokens[pointer].Lexem))
                 {
                     AddOperandToResult(tokens[pointer]);
                 }
-                else if (tokens[pointer].Lexem == Lexem.OP)
+                else if (tokens[pointer].Lexem == Lexem.OP || tokens[pointer].Lexem == Lexem.UNARYMINUS)
                 {
                     AddOperationToStack(tokens[pointer]);
                 }
-                else if (IsFucntion(tokens[pointer]))
+                else if (Lexem.IsFucntion(tokens[pointer].Lexem))
                 {
                     AddFunctionToStack(tokens[pointer]);
                 }
-                else if (tokens[pointer].Lexem == Lexem.L_B || tokens[pointer].Lexem == Lexem.R_B)
+                else if (Lexem.IsBracket(tokens[pointer].Lexem))
                 {
                     AddBrackets(tokens[pointer]);
                 }
                 else if (tokens[pointer].Lexem == Lexem.COMMA)
                 {
                     AddComma(tokens[pointer]);
+                }
+                else
+                {
+                    throw new StackMachineException("Can\'t handle token " + tokens[pointer].ToString());
                 }
             }
 
@@ -57,58 +56,30 @@ namespace SyntaxParser
 
         private void AddComma(Token comma)
         {
-            if (comma.Lexem == Lexem.COMMA)
+            while (stack.Peek().Lexem != Lexem.L_B)
             {
-                while (stack.Peek().Lexem != Lexem.L_B)
-                {
-                    result.Add(stack.Pop());
-                }
-                pointer++;
+                result.Add(stack.Pop());
             }
-            else
-            {
-                throw new StackMachineException("Not an comma");
-            }
+            pointer++;
         }
 
         private void AddOperandToResult(Token operand)
         {
-            if (operand.Lexem == Lexem.INTEGER || operand.Lexem == Lexem.DOUBLE || operand.Lexem == Lexem.PI || operand.Lexem == Lexem.E)
-            {
-                result.Add(operand);
-                pointer++;
-            }
-            else
-            {
-                throw new StackMachineException("Not an operand");
-            }
+            result.Add(operand);
+            pointer++;
         }
 
         private void AddOperationToStack(Token operation)
         {
-            if (operation.Lexem == Lexem.OP)
-            {
-                RemoveOperationsFromStack(operation);
-                stack.Push(operation);
-                pointer++;
-            }
-            else
-            {
-                throw new StackMachineException("Not an operation");
-            }
+            RemoveOperationsFromStack(operation);
+            stack.Push(operation);
+            pointer++;
         }
 
         private void AddFunctionToStack(Token function)
         {
-            if (IsFucntion(function))
-            {
-                stack.Push(function);
-                pointer++;
-            }
-            else
-            {
-                throw new StackMachineException("Not an function");
-            }
+            stack.Push(function);
+            pointer++;
         }
 
         private void AddBrackets(Token bracket)
@@ -119,7 +90,6 @@ namespace SyntaxParser
             }
             else if (bracket.Lexem == Lexem.R_B)
             {
-                
                 while (stack.Peek().Lexem != Lexem.L_B)
                 {
                     result.Add(stack.Pop());
@@ -128,43 +98,38 @@ namespace SyntaxParser
                 if (stack.Peek().Lexem == Lexem.L_B)
                 {
                     stack.Pop();
-                    if (stack.Count > 0 && IsFucntion(stack.Peek()))
+                    if (stack.Count > 0 && Lexem.IsFucntion(stack.Peek().Lexem))
                     {
                         result.Add(stack.Pop());
                     }
                 }
-                
-            }
-            else
-            {
-                throw new StackMachineException("Not a bracket");
             }
             pointer++;
         }
 
-        protected bool IsFucntion(Token function)
-        {
-            return function.Lexem == Lexem.SIN || function.Lexem == Lexem.COS || function.Lexem == Lexem.TAN || function.Lexem == Lexem.LN || function.Lexem == Lexem.LOG || function.Lexem == Lexem.EXP || function.Lexem == Lexem.POW;
-        }
-
         private void RemoveOperationsFromStack(Token operation)
         {
-            while (stack.Count > 0 && stack.Peek().Lexem == Lexem.OP && WeighOperand(operation) <= WeighOperand(stack.Peek()))
+            while (stack.Count > 0 && (stack.Peek().Lexem == Lexem.OP || stack.Peek().Lexem == Lexem.UNARYMINUS) && WeighOperation(operation) <= WeighOperation(stack.Peek()))
             {
+                if (stack.Peek().Lexem == Lexem.UNARYMINUS && operation.Lexem == Lexem.UNARYMINUS)
+                {
+                    break;
+                }
                 result.Add(stack.Pop());
             }
         }
 
-        private int WeighOperand(Token operand)
+        private int WeighOperation(Token operation)
         {
-            switch (operand.Value)
+            switch (operation.Value)
             {
                 case "+": return 2;
                 case "-": return 2;
                 case "*": return 3;
                 case "/": return 3;
+                case "~": return 4;
                 default:
-                    return 4;
+                    return 5;
             }
         }
     }

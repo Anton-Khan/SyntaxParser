@@ -10,10 +10,10 @@ namespace TestSyntaxParser
         [TestMethod]
         public void ParseEmptyString()
         {
-            string text = "";
+            string text = InputStorage.Empty.Text;
             var result = Parser.Parse(text);
 
-            Assert.AreEqual(result.Count, 0, "Null String creates some Tokens");
+            Assert.AreEqual(result.Count, InputStorage.Empty.TokenList.Tokens.Count, "Null String creates some Tokens");
         }
 
         [TestMethod]

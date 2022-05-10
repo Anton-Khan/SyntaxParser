@@ -7,6 +7,7 @@ namespace SyntaxParser
     "pow( pow( log(5, 125)+1 , log((12/3), 16) ) , (2) )"
     "pow( pow( log(5, 125)+1 , log((12/3), 16)+5 ) , (2) )"
     "pow(pow(log(5, 125)+1 , log((12/3), 16)+5 ),(2)) / log(3,9)"
+    "-1--(-5)+log(--3,--9)"
     */
 
 

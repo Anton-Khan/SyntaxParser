@@ -1,6 +1,6 @@
 ﻿Expression = Value (OP Value)*
 
-Value = INTEGER | DOUBLE | PI | E | BracketBody | FuncOne | FuncTwo
+Value = (UNARYMINUS)* (INTEGER | DOUBLE | PI | E | BracketBody | FuncOne | FuncTwo)
 
 BracketBody = L_B Expression R_B
 
@@ -17,6 +17,7 @@ INTEGER
 DOUBLE
 COMMA
 OP
+UNARYMINUS
 L_B
 R_B
 SIN
@@ -28,4 +29,3 @@ EXP
 POW
 PI
 E
-

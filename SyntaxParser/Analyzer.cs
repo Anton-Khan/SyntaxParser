@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace SyntaxParser
 {
     public class Analyzer
     {
-        private static List<Token> tokens;
-        private static int iterator;
+        private List<Token> tokens;
+        private int iterator;
 
         public Analyzer()
         {
@@ -40,13 +36,11 @@ namespace SyntaxParser
             }
             catch (Exception e)
             {
-                Console.BackgroundColor = ConsoleColor.Red;
-                Console.WriteLine(e.Message);
-                Console.BackgroundColor = ConsoleColor.Black;
+                ShowError(e);
                 return false;
             }
         }
-        private static bool Expression()
+        private bool Expression()
         {
             try
             {
@@ -76,16 +70,28 @@ namespace SyntaxParser
             }
             catch (LangException e)
             {
-                Console.BackgroundColor = ConsoleColor.Red;
-                Console.WriteLine(e.Message);
-                Console.BackgroundColor = ConsoleColor.Black;
+                ShowError(e);
                 return false;   
             }
         }
 
 
-        private static bool Value()
+        private bool Value()
         {
+            while(true)
+            {
+                try
+                {
+                    if(!UnaryMinus())
+                    {
+                        break;
+                    }
+                }
+                catch (LangException)
+                {
+                }
+            }
+
             try
             {
                 if (Digit())
@@ -121,24 +127,22 @@ namespace SyntaxParser
             }
             catch (LangException e )
             {
-                Console.BackgroundColor = ConsoleColor.Red;
-                Console.WriteLine(e.Message);
-                Console.BackgroundColor = ConsoleColor.Black;
+                ShowError(e);
                 return false;
             }
         }
 
-        private static bool BracketBody()
+        private bool BracketBody()
         {
             return LeftBracket() && Expression() && RightBracket();
         }
 
-        private static bool FuncOne()
+        private bool FuncOne()
         {
             return FuncOneQuantifier() && BracketBody();
         }
 
-        private static bool FuncOneQuantifier()
+        private bool FuncOneQuantifier()
         {
             if (Sin())
             {
@@ -164,11 +168,20 @@ namespace SyntaxParser
             return false;
         }
 
-        private static bool FuncTwo()
+        private void ShowError(Exception e)
+        {
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine(e.Message);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Black;
+        }
+
+        private bool FuncTwo()
         {
             return FuncTwoQuantifier() && LeftBracket() && Expression() & Comma() && Expression() && RightBracket();
         }
-        private static bool FuncTwoQuantifier()
+        private bool FuncTwoQuantifier()
         {
             if (Log())
             {
@@ -181,71 +194,75 @@ namespace SyntaxParser
 
             return false;
         }
-        private static bool Digit()
+        private bool Digit()
         {
             return Match(GetNextToken(), Lexem.INTEGER);
         }
 
-        private static bool Decimal()
+        private bool Decimal()
         {
             return Match(GetNextToken(), Lexem.DOUBLE);
         }
 
-        private static bool E()
+        private bool E()
         {
             return Match(GetNextToken(), Lexem.E);
         }
 
-        private static bool PI()
+        private bool PI()
         {
             return Match(GetNextToken(), Lexem.PI);
         }
-        private static bool Comma()
+        private bool Comma()
         {
             return Match(GetNextToken(), Lexem.COMMA);
         }
-        private static bool Op()
+        private bool Op()
         {
             return Match(GetNextToken(), Lexem.OP);
         }
-        private static bool LeftBracket()
+        private bool UnaryMinus()
+        {
+            return Match(GetNextToken(), Lexem.UNARYMINUS);
+        }
+        private bool LeftBracket()
         {
             return Match(GetNextToken(), Lexem.L_B);
         }
-        private static bool RightBracket()
+        private bool RightBracket()
         {
             return Match(GetNextToken(), Lexem.R_B);
         }
-        private static bool Sin()
+        private bool Sin()
         {
             return Match(GetNextToken(), Lexem.SIN);
         }
-        private static bool Cos()
+        private bool Cos()
         {
             return Match(GetNextToken(), Lexem.COS);
         }
-        private static bool Tan()
+        private bool Tan()
         {
             return Match(GetNextToken(), Lexem.TAN);
         }
-        private static bool Log()
+        private bool Log()
         {
             return Match(GetNextToken(), Lexem.LOG);
         }
-        private static bool Ln()
+        private bool Ln()
         {
             return Match(GetNextToken(), Lexem.LN);
         }
-        private static bool Exp()
+        private bool Exp()
         {
             return Match(GetNextToken(), Lexem.EXP);
         }
-        private static bool Pow()
+        private bool Pow()
         {
             return Match(GetNextToken(), Lexem.POW);
         }
 
-        private static bool Match(Token currentToken, Lexem requiredLexem)
+        private bool Match(Token currentToken, Lexem requiredLexem)
         {
             if (currentToken.Lexem == requiredLexem)
             {
@@ -259,7 +276,7 @@ namespace SyntaxParser
             return false;
         }
 
-        private static Token GetNextToken()
+        private Token GetNextToken()
         {
             if (tokens.Count > iterator)
             {
