@@ -1,7 +1,7 @@
 ﻿
 using System.Globalization;
 
-namespace SyntaxParser
+namespace SyntaxParserAPI
 {
     public class PostfixPolishNotation : DijkstraStackMachine
     {

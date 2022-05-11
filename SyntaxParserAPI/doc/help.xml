@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SyntaxParserAPI</name>
+    </assembly>
+    <members>
+        <member name="T:SyntaxParserAPI.SyntaxParser">
+            <summary>
+              <para>Основной класс для работы с синтаксическим парсером.</para>
+            </summary>
+        </member>
+        <member name="M:SyntaxParserAPI.SyntaxParser.Parse(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+             <summary>Решает поданное на вход выражение.</summary>
+             <param name="expression">Выражение.</param>
+             <param name="showParsingModule">При установке в true [Показывает работу модуля Parser].</param>
+             <param name="showAnalizingModule">При установке в true [Показывает работу модуля Analyzer].</param>
+             <param name="showPpnBuilderModule">При установке в true [Показывает работу модуля строящего PostfixPolishNotation ].</param>
+             <param name="showPpnSolverModule">При установке в true [Показывает работу модуля решающего PostfixPolishNotation ].</param>
+             <remarks>
+               <para>Функция оследовательно обрабатыет поданное на вход выражение.<br />1. Парсит входное выражение, разбирая его на лексемы.<br />2. Полученные лексемы анализируются по правилам определенной грамматики.<br />3. По завершению анализа строится обратная польская нотация.<br />4. Обратная польская нотация последовательно решается.</para>
+             </remarks>
+             <example>
+               <code>using SyntaxParserAPI;
+            
+             namespace YourNamespace
+             {
+                 public static class Program
+                 {
+                     public static void Main(string[] args)
+                     {
+                         string? input = Console.ReadLine();
+            
+                         SyntaxParser.Parse(input);
+                     }
+                 }
+             }</code>
+             </example>
+        </member>
+    </members>
+</doc>

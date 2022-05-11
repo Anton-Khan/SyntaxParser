@@ -1,5 +1,5 @@
 ﻿
-namespace SyntaxParser
+namespace SyntaxParserAPI
 {
     public class DijkstraStackMachine
     {

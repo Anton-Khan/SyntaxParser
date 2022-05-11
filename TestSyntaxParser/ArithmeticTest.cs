@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SyntaxParser;
+using SyntaxParserAPI;
 using System;
 
 namespace TestSyntaxParser

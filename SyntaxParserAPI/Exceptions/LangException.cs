@@ -1,11 +1,11 @@
 ﻿using System.Runtime.Serialization;
 
-namespace SyntaxParser
+namespace SyntaxParserAPI
 {
     [Serializable]
     internal class LangException : Exception
     {
-        private object p;
+        private object? p;
 
         public LangException()
         {

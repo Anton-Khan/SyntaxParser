@@ -1,0 +1,31 @@
+﻿Expression = Value (OP Value)*
+
+Value = (UNARYMINUS)* (INTEGER | DOUBLE | PI | E | BracketBody | FuncOne | FuncTwo)
+
+BracketBody = L_B Expression R_B
+
+FuncOne = FuncOneKW BracketBody
+
+FuncOneKW = SIN | COS | TAN | LN | EXP 
+
+FuncTwo =  FuncTwoKW L_B Expression COMMA Expression R_B
+
+FuncTwoKW = LOG | POW 
+
+
+INTEGER
+DOUBLE
+COMMA
+OP
+UNARYMINUS
+L_B
+R_B
+SIN
+COS
+TAN
+LOG
+LN
+EXP
+POW
+PI
+E

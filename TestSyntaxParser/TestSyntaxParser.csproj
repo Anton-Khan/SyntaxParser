@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SyntaxParser\SyntaxParser.csproj" />
+    <ProjectReference Include="..\SyntaxParserAPI\SyntaxParserAPI.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace SyntaxParser
+namespace SyntaxParserAPI
 {
     public static class Parser
     {

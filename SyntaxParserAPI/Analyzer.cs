@@ -1,11 +1,12 @@
 ﻿
 
-namespace SyntaxParser
+namespace SyntaxParserAPI
 {
     public class Analyzer
     {
         private List<Token> tokens;
         private int iterator;
+        private bool showAnalyzation = true;
 
         public Analyzer()
         {
@@ -13,8 +14,9 @@ namespace SyntaxParser
             iterator = 0;
         }
 
-        public bool Analyze(List<Token> list)
+        public bool Analyze(List<Token> list, bool showAnalyzation = true)
         {
+            this.showAnalyzation = showAnalyzation;
             try
             {
                 tokens.AddRange((Token[])list.ToArray().Clone());
@@ -57,7 +59,8 @@ namespace SyntaxParser
                         }
                         catch (LangException t)
                         {
-                            Console.WriteLine("(OP VALUE) in Expression ended {" + t.Message + "}");
+                            if ( showAnalyzation)
+                                Console.WriteLine("(OP VALUE) in Expression ended {" + t.Message + "}");
                             return true;
                         }
                         if (!Value())
@@ -266,12 +269,19 @@ namespace SyntaxParser
         {
             if (currentToken.Lexem == requiredLexem)
             {
-                Console.BackgroundColor = ConsoleColor.Green;
-                Console.WriteLine(iterator + ") " + currentToken.Lexem + " " + currentToken.Value);
-                Console.BackgroundColor = ConsoleColor.Black;
+                if (showAnalyzation)
+                {
+                    Console.BackgroundColor = ConsoleColor.Green;
+                    Console.WriteLine(iterator + ") " + currentToken.Lexem + " " + currentToken.Value);
+                    Console.BackgroundColor = ConsoleColor.Black;
+                }
                 return true;
             }
-            Console.WriteLine(requiredLexem.ToString() + " expected, but " + currentToken.Lexem + "(" + currentToken.Value + ") found -> " + iterator);
+
+            if (showAnalyzation)
+            {
+                Console.WriteLine(requiredLexem.ToString() + " expected, but " + currentToken.Lexem + "(" + currentToken.Value + ") found -> " + iterator);
+            }
             iterator--;
             return false;
         }

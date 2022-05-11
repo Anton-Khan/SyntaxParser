@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace SyntaxParser
+namespace SyntaxParserAPI
 {
     [Serializable]
     internal class StackMachineException : Exception
