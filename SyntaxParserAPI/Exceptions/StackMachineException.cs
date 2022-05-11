@@ -1,7 +1,9 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace SyntaxParserAPI
 {
+    /// <summary>Класс исключений для обратной польской нотации. Построение и Вычисление.</summary>
     [Serializable]
     internal class StackMachineException : Exception
     {

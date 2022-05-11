@@ -1,12 +1,15 @@
-﻿
+﻿using System.Collections.Generic;
+
 namespace SyntaxParserAPI
 {
+    /// <summary>Класс собирающай токены из инфиксной в обратную польскую нотацию.</summary>
     public class DijkstraStackMachine
     {
         private Stack<Token> stack;
         private List<Token> result;
         private int pointer;
 
+        /// <summary>Инициализирует новый экземпляр класса DijkstraStackMachine.</summary>
         protected DijkstraStackMachine()
         {
             stack = new Stack<Token>();
@@ -14,6 +17,10 @@ namespace SyntaxParserAPI
             pointer = 0;
         }
 
+        /// <summary>Строит обратную польскую нотацию из токенов в инфиксной нотации.</summary>
+        /// <param name="tokens">Токены в инфиксной нотации.</param>
+        /// <returns>Возвращает токены в обратной польской нотации. <see cref="List{Token}" />;<br /></returns>
+        /// <exception cref="StackMachineException">Can\'t handle token " + tokens[pointer].ToString()</exception>
         protected List<Token> BuildPostfixPolishNotation(List<Token> tokens)
         {
             tokens.Add(new Token(Lexem.END, "END"));

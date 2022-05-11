@@ -1,19 +1,26 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
 
 namespace SyntaxParserAPI
 {
+    /// <summary>Класс анализирующий список токенов на соответствие грамматике языка.</summary>
     public class Analyzer
     {
         private List<Token> tokens;
         private int iterator;
         private bool showAnalyzation = true;
 
+        /// <summary>Инициализирует новый экземпляр класса Analyzer.</summary>
         public Analyzer()
         {
             tokens = new List<Token>();
             iterator = 0;
         }
 
+        /// <summary>Анализирует список токенов на соответствие грамматике языка..</summary>
+        /// <param name="list">Список токенов.</param>
+        /// <param name="showAnalyzation">Если <c>true</c> [Выводит на консоль пошаговый анализ токенов].</param>
+        /// <returns>Если анализ успешно завершился [true] ; иначе [false]</returns>
         public bool Analyze(List<Token> list, bool showAnalyzation = true)
         {
             this.showAnalyzation = showAnalyzation;

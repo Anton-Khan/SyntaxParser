@@ -1,19 +1,29 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 
 namespace SyntaxParserAPI
 {
+    /// <summary>Класс представляет список токенов в обратной польской нотации.</summary>
     public class PostfixPolishNotation : DijkstraStackMachine
     {
         private bool isBuilded = false;
+        /// <summary>Инициализирует новый экземпляр класса PostfixPolishNotation.</summary>
+        /// <param name="tokens">Список токенов в инфиксной нотации.</param>
+        /// <remarks>Получая на вход список токенов в инфиксной нотации, собирает из них обратную польскую с помощью <see cref="SyntaxParserAPI.DijkstraStackMachine"/>.</remarks>
         public PostfixPolishNotation(List<Token> tokens) : base()
         {
             Tokens = BuildPostfixPolishNotation(tokens);
             isBuilded = true;
         }
-
+        /// <summary>Возврщает cписок токенов в обратной польской нотации.</summary>
+        /// <value>Список токенов в обратной польской нотации.</value>
         public List<Token> Tokens { get; private set; }
 
+        /// <summary>Решает обратную польскую нотацию.</summary>
+        /// <param name="showIntermediateCalculations">если <c>true</c> [Выводит в консоль промежуточные вычисления].</param>
+        /// <returns>Число, полученное в результате вычислений <see cref="System.Double" />.</returns>
+        /// <exception cref="SyntaxParserAPI.StackMachineException">PostfixPolishNotation is not builded yet</exception>
         public double Solve(bool showIntermediateCalculations)
         {
             if (isBuilded)

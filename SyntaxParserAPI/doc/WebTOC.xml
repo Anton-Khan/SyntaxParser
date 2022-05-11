@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpTOC>
+
+  <HelpTOCNode Id="8f86ae61-576d-43d2-9b23-63f0dd83b22d" Title="SyntaxParserAPI" Url="html/72bfa484-30ba-2564-03b8-ce259ee102db.htm">
+    <HelpTOCNode Id="44d1dd0e-4731-4454-92b5-3312ffe2d88b" Title="Analyzer - класс" Url="html/8db04b74-b7ea-f9f4-2abf-97046fe0130a.htm">
+      <HelpTOCNode Title="Analyzer - конструктор" Url="html/d97f1d5a-091f-c816-af14-350e6b0aad2d.htm" />
+      <HelpTOCNode Id="51cf5fa6-24d4-4d75-9755-d00f1bad5fe3" Title="Analyzer - методы" Url="html/a00e864a-3174-9d5b-bbed-46332f44a1e2.htm">
+        <HelpTOCNode Title="Analyze - метод" Url="html/4722b350-e8b6-7014-eee4-f48197e4646a.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="152ea97d-eeec-418a-b8cc-1549df67d03f" Title="DijkstraStackMachine - класс" Url="html/8d9d954b-60e8-accc-20dc-b02c982adaa3.htm">
+      <HelpTOCNode Title="DijkstraStackMachine - конструктор" Url="html/817d5128-a8c3-8b4f-8546-4f668852c22f.htm" />
+      <HelpTOCNode Id="6977bdf6-d174-4e11-b03e-3cd3ba128612" Title="DijkstraStackMachine - методы" Url="html/22276a9a-0e29-9fa8-3b5a-6c2a4fe37d9e.htm">
+        <HelpTOCNode Title="BuildPostfixPolishNotation - метод" Url="html/5fbdc7ab-0922-cdc8-9ff0-dbc2782e3a7d.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="b2d7f186-6826-4ecf-bfb8-d25193d62131" Title="Lexem - класс" Url="html/9e0f7ce6-cb92-e0f9-88fe-5d0cf9c8317f.htm">
+      <HelpTOCNode Title="Lexem - конструктор" Url="html/9a48484a-759e-70ea-458a-26b68193a2b5.htm" />
+      <HelpTOCNode Id="de8da59c-6546-4429-9370-f1a3aeddc45f" Title="Lexem - свойства" Url="html/b3de9e3f-775c-5312-f74e-7b2c1cbe24d5.htm">
+        <HelpTOCNode Title="Name - свойство" Url="html/9d1327f2-31ba-20a4-bb65-1936df428f53.htm" />
+        <HelpTOCNode Title="Regexp - свойство" Url="html/2ce57f81-af2f-cf2b-37b5-e4d226161390.htm" />
+        <HelpTOCNode Title="Values - свойство" Url="html/5794504c-d2d6-7953-0b54-451c0c13dc9a.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="9c1c2272-5807-42ab-998d-066f6bc88abd" Title="Lexem - методы" Url="html/000df4ac-3ef7-0832-4d7e-f2f2b904ec74.htm">
+        <HelpTOCNode Title="IsBracket - метод" Url="html/973bf917-5307-8e03-30d0-dc3a3b7d8352.htm" />
+        <HelpTOCNode Title="IsFucntion - метод" Url="html/5795b943-316c-e544-3926-0704f4e13c02.htm" />
+        <HelpTOCNode Title="IsFunctionOfTwo - метод" Url="html/30231bf1-ebf1-d3ff-7285-2f6e3d03a4ee.htm" />
+        <HelpTOCNode Title="IsOperand - метод" Url="html/c2ccc046-e71d-fef0-6eec-3b3b206b1829.htm" />
+        <HelpTOCNode Title="ToString - метод" Url="html/f10ca2e7-3674-fbf4-0f79-6e5a44502675.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="365605a3-85cd-4bec-9d27-f11c8f0fe4e6" Title="Lexem - поля" Url="html/171fef05-82d1-b0a9-ad8a-0cfb91e6bb9f.htm">
+        <HelpTOCNode Title="COMMA - поле" Url="html/91a89a0e-b7bc-0503-6cc4-db36671404b5.htm" />
+        <HelpTOCNode Title="COS - поле" Url="html/71c8b67c-6588-591e-61dd-a9feff9ea06f.htm" />
+        <HelpTOCNode Title="DOUBLE - поле" Url="html/5eb362a0-fcc6-607c-cd06-0ffa174b9daa.htm" />
+        <HelpTOCNode Title="E - поле" Url="html/4474141f-17ab-8334-c36b-5259a5019511.htm" />
+        <HelpTOCNode Title="END - поле" Url="html/701fbd36-c3e4-8215-0473-774af678fcdd.htm" />
+        <HelpTOCNode Title="EXP - поле" Url="html/6ff9e09e-f68c-0725-6e28-baaf831b0542.htm" />
+        <HelpTOCNode Title="INTEGER - поле" Url="html/b2bb0413-0aa5-5c2b-ab23-698212886835.htm" />
+        <HelpTOCNode Title="L_B - поле" Url="html/8befcb90-580f-cf5d-8828-21a0e2210f0d.htm" />
+        <HelpTOCNode Title="LN - поле" Url="html/d7caf5ff-ea67-af45-0a50-b5bed07bb889.htm" />
+        <HelpTOCNode Title="LOG - поле" Url="html/880e4292-7be1-d01f-52bb-3e844563a92c.htm" />
+        <HelpTOCNode Title="NullableLexem - поле" Url="html/14dc2116-a7e1-7bf2-acf6-762918804609.htm" />
+        <HelpTOCNode Title="OP - поле" Url="html/ca076965-8d21-2046-63b7-e993ac049320.htm" />
+        <HelpTOCNode Title="PI - поле" Url="html/f57789d7-0429-f585-7116-db4b452fcb66.htm" />
+        <HelpTOCNode Title="POW - поле" Url="html/3e65eff9-49e5-2e23-0f9a-e61cbab06b53.htm" />
+        <HelpTOCNode Title="R_B - поле" Url="html/2e673cb3-c880-e7e7-6ada-2df2c55c4526.htm" />
+        <HelpTOCNode Title="SIN - поле" Url="html/dd711c3c-0162-40bf-0a28-002c65de9609.htm" />
+        <HelpTOCNode Title="TAN - поле" Url="html/e42d5942-fde2-c96b-3692-4d060b3c8b86.htm" />
+        <HelpTOCNode Title="UNARYMINUS - поле" Url="html/f47c823c-ebe2-f726-9de0-5de2945fc399.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="9bd31fe0-2b49-4709-bea1-cbec7a828b90" Title="Parser - класс" Url="html/0ee189a1-77c1-a10c-2291-9b30beb01229.htm">
+      <HelpTOCNode Id="8b4ceb39-12c7-486d-b0aa-43b2f9f90121" Title="Parser - методы" Url="html/235a2cdc-5f22-7c23-4233-5caa3ea6c556.htm">
+        <HelpTOCNode Title="Parse - метод" Url="html/64713110-aa1f-6b91-3bd9-7d4d4b5d269c.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="65e52e7a-4fd3-456c-928e-ce0acebc4b67" Title="PostfixPolishNotation - класс" Url="html/fc9c7267-822e-f9ae-15e4-6db33cefafe1.htm">
+      <HelpTOCNode Title="PostfixPolishNotation - конструктор" Url="html/bf4b5596-38b5-105f-5319-0771ba0544f9.htm" />
+      <HelpTOCNode Id="b453047c-74d4-4e7b-8740-891d1230a32e" Title="PostfixPolishNotation - свойства" Url="html/aabe2cd4-28e2-84b3-c9fa-9db1f6e1e9dd.htm">
+        <HelpTOCNode Title="Tokens - свойство" Url="html/ad60a20f-a5c7-d54d-f243-d42ec1bffdb9.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="4ece3dab-7df6-4bc2-ba3d-a21dd38ff519" Title="PostfixPolishNotation - методы" Url="html/134e652e-4482-6253-84fb-bf834ea62128.htm">
+        <HelpTOCNode Title="Solve - метод" Url="html/78736d1b-8a82-4287-933d-df6aac45c7c8.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="119723e0-0fdf-4fc9-9a23-efc93189aa1c" Title="SyntaxParser - класс" Url="html/2be5c0ad-a950-a50e-0937-10420c8971c9.htm">
+      <HelpTOCNode Id="7a57a657-0143-46d1-be65-486fe76b946d" Title="SyntaxParser - методы" Url="html/c9c52b33-540c-825d-578c-5d94820e7203.htm">
+        <HelpTOCNode Title="Parse - метод" Url="html/82e6e0fc-2a64-e9da-1fb0-1a9f9ca896a7.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="40f8bf5b-9ec6-4c5d-be01-cd43c4b73edd" Title="Token - класс" Url="html/80967f76-e7e1-3ce5-4a0b-70f5ae1f73c9.htm">
+      <HelpTOCNode Title="Token - конструктор" Url="html/8b765e5a-a865-58a4-55b9-7fdf359b1b20.htm" />
+      <HelpTOCNode Id="3a06d09e-c3ad-4ebc-9b42-a551292e2e91" Title="Token - свойства" Url="html/d0cad840-9bb2-f8ba-b433-1d93028b66b6.htm">
+        <HelpTOCNode Title="Lexem - свойство" Url="html/aab0482b-75fe-0c7f-1ba6-1556dcb1e599.htm" />
+        <HelpTOCNode Title="Value - свойство" Url="html/3606cc23-a30a-85fb-1be7-a3af067a5081.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="8e42a514-8f7f-4e2e-bdd3-8f8750e0e5a7" Title="Token - методы" Url="html/734eadf4-f9ff-913e-9616-a158bb3e93e9.htm">
+        <HelpTOCNode Title="SameAs - метод" Url="html/28f40fe0-af38-366d-220a-2d16bb53f2ea.htm" />
+        <HelpTOCNode Title="ToString - метод" Url="html/c6fb2f14-8493-bfef-1d11-38f2d5fe75af.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+</HelpTOC>

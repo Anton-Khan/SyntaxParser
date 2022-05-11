@@ -1,19 +1,14 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace SyntaxParserAPI
 {
+    /// <summary>Класс исключений языка.</summary>
     [Serializable]
     internal class LangException : Exception
     {
-        private object? p;
-
         public LangException()
         {
-        }
-
-        public LangException(object p)
-        {
-            this.p = p;
         }
 
         public LangException(string? message) : base(message)

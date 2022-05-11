@@ -2,7 +2,6 @@
 
 namespace SyntaxParserApp
 {
-    
     public static class Program
     {
         public static void Main(string[] args)
@@ -24,8 +23,7 @@ namespace SyntaxParserApp
                 Console.WriteLine(input+"\n");
             }
 
-            SyntaxParser.Parse(input, showParsingModule: true, showAnalizingModule: true);
-            
+            SyntaxParser.Parse(input, true, true, true, true);            
         }
     }
 }

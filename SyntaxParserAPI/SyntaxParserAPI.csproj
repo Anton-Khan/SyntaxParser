@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
+    <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <DocumentationFile>C:\Users\Khan\YandexDisk\_Learning\МГТУимБаумана-магистратура\2_Семестр\Технологии и методы программирования\Невыполнимо\SyntaxParser\SyntaxParserAPI\doc\help.xml</DocumentationFile>
