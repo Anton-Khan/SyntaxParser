@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <title>SyntaxParser API Notation</title>
+</head>
+<body>
+    <h1>Нотация языка в расширенной форме Бэкуса — Наура</h1>
+    <p></p>
+    <p>Expression = Value (OP Value)*</p>
+    <hr />
+    <p>Value = (UNARYMINUS)* (INTEGER | DOUBLE | PI | E | BracketBody | FuncOne | FuncTwo)</p>
+    <p>BracketBody = L_B Expression R_B</p>
+    <p>FuncOne = FuncOneKW BracketBody</p>
+    <p>FuncOneKW = SIN | COS | TAN | LN | EXP</p>
+    <p>FuncTwo =  FuncTwoKW L_B Expression COMMA Expression R_B</p>
+    <p>FuncTwoKW = LOG | POW</p>
+    <hr />
+    <p>INTEGER</p>
+    <p>DOUBLE</p>
+    <p>COMMA</p>
+    <p>OP</p>
+    <p>UNARYMINUS</p>
+    <p>L_B</p>
+    <p>R_B</p>
+    <p>SIN</p>
+    <p>COS</p>
+    <p>TAN</p>
+    <p>LOG</p>
+    <p>LN</p>
+    <p>EXP</p>
+    <p>POW</p>
+    <p>PI</p>
+    <p>E</p>
+</body>
+</html>
