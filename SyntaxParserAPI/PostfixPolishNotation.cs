@@ -139,6 +139,7 @@ namespace SyntaxParserAPI
                     case "tan": stack.Push(Math.Tan(value)); break;
                     case "ln": stack.Push(Math.Log2(value)); break;
                     case "exp": stack.Push(Math.Exp(value)); break;
+                    case "sqrt": stack.Push(Math.Sqrt(value)); break;
                     case "~": stack.Push(-value); break;
                 }
                 if (showIntermediateCalculations)

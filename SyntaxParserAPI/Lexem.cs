@@ -61,6 +61,9 @@ namespace SyntaxParserAPI
         /// <summary>Стандартная лексема Pow</summary>
         /// <remarks>Является функцией двух переменных.</remarks>
         public static readonly Lexem POW = new Lexem("^pow$", nameof(POW));
+        /// <summary>Стандартная лексема Sqrt</summary>
+        /// <remarks>Является функцией двух переменных.</remarks>
+        public static readonly Lexem SQRT = new Lexem("^sqrt$", nameof(SQRT));
         /// <summary>Стандартная лексема PI. Математическая константа pi.</summary>
         /// <remarks>Является операндом.</remarks>
         public static readonly Lexem PI = new Lexem("^PI$", nameof(PI));
@@ -87,6 +90,7 @@ namespace SyntaxParserAPI
                 yield return LN;
                 yield return EXP;
                 yield return POW;
+                yield return SQRT;
                 yield return PI;
                 yield return E;
             }
@@ -98,7 +102,7 @@ namespace SyntaxParserAPI
         ///   <c>true</c> если полученная лексема функция. ; иначе, <c>false</c>.</returns>
         public static bool IsFucntion(Lexem function)
         {
-            return function == Lexem.SIN || function == Lexem.COS || function == Lexem.TAN || function == Lexem.LN || function == Lexem.LOG || function == Lexem.EXP || function == Lexem.POW;
+            return function == Lexem.SIN || function == Lexem.COS || function == Lexem.TAN || function == Lexem.LN || function == Lexem.LOG || function == Lexem.EXP || function == Lexem.POW || function == Lexem.SQRT;
         }
         /// <summary>Проверяет, является ли полученная лексема операндом.</summary>
         /// <param name="operand">Лексема требующая проверки.</param>

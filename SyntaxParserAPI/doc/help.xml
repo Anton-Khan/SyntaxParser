@@ -1,0 +1,247 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SyntaxParserAPI</name>
+    </assembly>
+    <members>
+        <member name="T:SyntaxParserAPI.Analyzer">
+            <summary>Класс анализирующий список токенов на соответствие грамматике языка.</summary>
+        </member>
+        <member name="M:SyntaxParserAPI.Analyzer.#ctor">
+            <summary>Инициализирует новый экземпляр класса Analyzer.</summary>
+        </member>
+        <member name="M:SyntaxParserAPI.Analyzer.Analyze(System.Collections.Generic.List{SyntaxParserAPI.Token},System.Boolean)">
+            <summary>Анализирует список токенов на соответствие грамматике языка..</summary>
+            <param name="list">Список токенов.</param>
+            <param name="showAnalyzation">Если <c>true</c> [Выводит на консоль пошаговый анализ токенов].</param>
+            <returns>Если анализ успешно завершился [true] ; иначе [false]</returns>
+        </member>
+        <member name="T:SyntaxParserAPI.DijkstraStackMachine">
+            <summary>Класс собирающай токены из инфиксной в обратную польскую нотацию.</summary>
+        </member>
+        <member name="M:SyntaxParserAPI.DijkstraStackMachine.#ctor">
+            <summary>Инициализирует новый экземпляр класса DijkstraStackMachine.</summary>
+        </member>
+        <member name="M:SyntaxParserAPI.DijkstraStackMachine.BuildPostfixPolishNotation(System.Collections.Generic.List{SyntaxParserAPI.Token})">
+            <summary>Строит обратную польскую нотацию из токенов в инфиксной нотации.</summary>
+            <param name="tokens">Токены в инфиксной нотации.</param>
+            <returns>Возвращает токены в обратной польской нотации. <see cref="T:System.Collections.Generic.List`1" />;<br /></returns>
+            <exception cref="T:SyntaxParserAPI.StackMachineException">Can\'t handle token " + tokens[pointer].ToString()</exception>
+        </member>
+        <member name="T:SyntaxParserAPI.LangException">
+            <summary>Класс исключений языка.</summary>
+        </member>
+        <member name="T:SyntaxParserAPI.StackMachineException">
+            <summary>Класс исключений для обратной польской нотации. Построение и Вычисление.</summary>
+        </member>
+        <member name="T:SyntaxParserAPI.Lexem">
+            <summary>Содержит все основные лексемы и группы лексем языка.</summary>
+        </member>
+        <member name="M:SyntaxParserAPI.Lexem.#ctor(System.String,System.String)">
+            <summary>Инициализирует новый экземпляр класса Lexem.</summary>
+            <param name="regexp">Шаблон регулярного выражения.</param>
+            <param name="name">Название лексемы.</param>
+        </member>
+        <member name="P:SyntaxParserAPI.Lexem.Regexp">
+            <summary>Возврщает шаблон регулярного выражения.</summary>
+            <value>Шаблон регулярного выражения.</value>
+        </member>
+        <member name="P:SyntaxParserAPI.Lexem.Name">
+            <summary>Возвращает название лексемы.</summary>
+            <value>Название лексемы.</value>
+        </member>
+        <member name="F:SyntaxParserAPI.Lexem.INTEGER">
+            <summary>Стандартная лексема Integer</summary>
+            <remarks>Является операндом.</remarks>
+        </member>
+        <member name="F:SyntaxParserAPI.Lexem.DOUBLE">
+            <summary>Стандартная лексема Double</summary>
+            <remarks>Является операндом.</remarks>
+        </member>
+        <member name="F:SyntaxParserAPI.Lexem.COMMA">
+            <summary>Стандартная лексема Comma</summary>
+            <remarks>Запятая.</remarks>
+        </member>
+        <member name="F:SyntaxParserAPI.Lexem.OP">
+            <summary>Стандартная лексема OP</summary>
+            <remarks>Является операцией и содержит "+ - * /" .</remarks>
+        </member>
+        <member name="F:SyntaxParserAPI.Lexem.L_B">
+            <summary>Стандартная лексема L_B</summary>
+            <remarks>Является скобкой (левой).</remarks>
+        </member>
+        <member name="F:SyntaxParserAPI.Lexem.R_B">
+            <summary>Стандартная лексема R_B</summary>
+            <remarks>Является скобкой (правой).</remarks>
+        </member>
+        <member name="F:SyntaxParserAPI.Lexem.SIN">
+            <summary>Стандартная лексема Sin</summary>
+            <remarks>Является функцией одного переменного.</remarks>
+        </member>
+        <member name="F:SyntaxParserAPI.Lexem.COS">
+            <summary>Стандартная лексема Cos</summary>
+            <remarks>Является функцией одного переменного.</remarks>
+        </member>
+        <member name="F:SyntaxParserAPI.Lexem.TAN">
+            <summary>Стандартная лексема Tan</summary>
+            <remarks>Является функцией одного переменного.</remarks>
+        </member>
+        <member name="F:SyntaxParserAPI.Lexem.LOG">
+            <summary>Стандартная лексема Log</summary>
+            <remarks>Является функцией двух переменных.</remarks>
+        </member>
+        <member name="F:SyntaxParserAPI.Lexem.LN">
+            <summary>Стандартная лексема Ln (Log2 в библиотеке Math) </summary>
+            <remarks>Является функцией одного переменного.</remarks>
+        </member>
+        <member name="F:SyntaxParserAPI.Lexem.EXP">
+            <summary>Стандартная лексема Exp</summary>
+            <remarks>Является функцией одного переменного.</remarks>
+        </member>
+        <member name="F:SyntaxParserAPI.Lexem.POW">
+            <summary>Стандартная лексема Pow</summary>
+            <remarks>Является функцией двух переменных.</remarks>
+        </member>
+        <member name="F:SyntaxParserAPI.Lexem.SQRT">
+            <summary>Стандартная лексема Sqrt</summary>
+            <remarks>Является функцией двух переменных.</remarks>
+        </member>
+        <member name="F:SyntaxParserAPI.Lexem.PI">
+            <summary>Стандартная лексема PI. Математическая константа pi.</summary>
+            <remarks>Является операндом.</remarks>
+        </member>
+        <member name="F:SyntaxParserAPI.Lexem.E">
+            <summary>Стандартная лексема E. Математическая константа e.</summary>
+            <remarks>Является операндом.</remarks>
+        </member>
+        <member name="P:SyntaxParserAPI.Lexem.Values">
+            <summary>Возвращает полный список доступных лексем.</summary>
+            <value>Доступные лексемы.</value>
+        </member>
+        <member name="M:SyntaxParserAPI.Lexem.IsFucntion(SyntaxParserAPI.Lexem)">
+            <summary>Проверяет, является ли полученная лексема функцией.</summary>
+            <param name="function">Лексема требующая проверки.</param>
+            <returns>
+              <c>true</c> если полученная лексема функция. ; иначе, <c>false</c>.</returns>
+        </member>
+        <member name="M:SyntaxParserAPI.Lexem.IsOperand(SyntaxParserAPI.Lexem)">
+            <summary>Проверяет, является ли полученная лексема операндом.</summary>
+            <param name="operand">Лексема требующая проверки.</param>
+            <returns>
+              <c>true</c> если полученная лексема операнд. ; иначе, <c>false</c>.</returns>
+        </member>
+        <member name="M:SyntaxParserAPI.Lexem.IsBracket(SyntaxParserAPI.Lexem)">
+            <summary>Проверяет, является ли полученная лексема скобкой.</summary>
+            <param name="bracket">Лексема требующая проверки.</param>
+            <returns>
+              <c>true</c> если полученная лексема скобка. ; иначе, <c>false</c>.</returns>
+        </member>
+        <member name="M:SyntaxParserAPI.Lexem.IsFunctionOfTwo(SyntaxParserAPI.Lexem)">
+            <summary>Проверяет, является ли полученная лексема функцией двух переменных.</summary>
+            <param name="function">Лексема требующая проверки.</param>
+            <returns>
+              <c>true</c> если полученная лексема функция двух переменных. ; иначе, <c>false</c>.</returns>
+        </member>
+        <member name="F:SyntaxParserAPI.Lexem.NullableLexem">
+            <summary>Служебная лексема NullableLexem.Означает пустую лексему.</summary>
+        </member>
+        <member name="F:SyntaxParserAPI.Lexem.UNARYMINUS">
+            <summary>Служебная лексема UNARYMINUS.Нужна для преобразования минуса в выражении в унарный минус.</summary>
+        </member>
+        <member name="F:SyntaxParserAPI.Lexem.END">
+            <summary>Служебная лексема END.Означает конец выражения.</summary>
+        </member>
+        <member name="M:SyntaxParserAPI.Lexem.ToString">
+            <summary>Конвертирует лексему в строку.</summary>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+        </member>
+        <member name="T:SyntaxParserAPI.Parser">
+            <summary>Класс позволяющий разбить выражиние на токены.</summary>
+        </member>
+        <member name="M:SyntaxParserAPI.Parser.Parse(System.String)">
+            <summary>Разбивает входящую строку на токены, при условии, что выражение содержит только лексемы языка.</summary>
+            <param name="text">Выражение из допустимых лексем.</param>
+            <returns>
+              <para>Возвращяет список полученных токенов.
+            <see cref="T:System.Collections.Generic.List`1" />;
+            </para>
+            </returns>
+            <exception cref="T:System.Exception">Input isn\'t expression at all!\nCan\'t match Lexem!\nIterator &gt;= Length of Input</exception>
+        </member>
+        <member name="T:SyntaxParserAPI.PostfixPolishNotation">
+            <summary>Класс представляет список токенов в обратной польской нотации.</summary>
+        </member>
+        <member name="M:SyntaxParserAPI.PostfixPolishNotation.#ctor(System.Collections.Generic.List{SyntaxParserAPI.Token})">
+            <summary>Инициализирует новый экземпляр класса PostfixPolishNotation.</summary>
+            <param name="tokens">Список токенов в инфиксной нотации.</param>
+            <remarks>Получая на вход список токенов в инфиксной нотации, собирает из них обратную польскую с помощью <see cref="T:SyntaxParserAPI.DijkstraStackMachine"/>.</remarks>
+        </member>
+        <member name="P:SyntaxParserAPI.PostfixPolishNotation.Tokens">
+            <summary>Возврщает cписок токенов в обратной польской нотации.</summary>
+            <value>Список токенов в обратной польской нотации.</value>
+        </member>
+        <member name="M:SyntaxParserAPI.PostfixPolishNotation.Solve(System.Boolean)">
+            <summary>Решает обратную польскую нотацию.</summary>
+            <param name="showIntermediateCalculations">если <c>true</c> [Выводит в консоль промежуточные вычисления].</param>
+            <returns>Число, полученное в результате вычислений <see cref="T:System.Double" />.</returns>
+            <exception cref="T:SyntaxParserAPI.StackMachineException">PostfixPolishNotation is not builded yet</exception>
+        </member>
+        <member name="T:SyntaxParserAPI.SyntaxParser">
+            <summary>
+              <para>Основной класс для работы с синтаксическим парсером.</para>
+            </summary>
+        </member>
+        <member name="M:SyntaxParserAPI.SyntaxParser.Parse(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+             <summary>Решает поданное на вход выражение.</summary>
+             <param name="expression">Выражение.</param>
+             <param name="showParsingModule">При установке в true [Показывает работу модуля Parser].</param>
+             <param name="showAnalizingModule">При установке в true [Показывает работу модуля Analyzer].</param>
+             <param name="showPpnBuilderModule">При установке в true [Показывает работу модуля строящего PostfixPolishNotation ].</param>
+             <param name="showPpnSolverModule">При установке в true [Показывает работу модуля решающего PostfixPolishNotation ].</param>
+             <remarks>
+               <para>Функция оследовательно обрабатыет поданное на вход выражение.<br />1. Парсит входное выражение, разбирая его на лексемы.<br />2. Полученные лексемы анализируются по правилам определенной грамматики.<br />3. По завершению анализа строится обратная польская нотация.<br />4. Обратная польская нотация последовательно решается.</para>
+             </remarks>
+             <example>
+               <code>using SyntaxParserAPI;
+            
+             namespace YourNamespace
+             {
+                 public static class Program
+                 {
+                     public static void Main(string[] args)
+                     {
+                         string? input = Console.ReadLine();
+            
+                         SyntaxParser.Parse(input);
+                     }
+                 }
+             }</code>
+             </example>
+        </member>
+        <member name="T:SyntaxParserAPI.Token">
+            <summary>Класс содержит информацию о полученной лексеме и значении.</summary>
+        </member>
+        <member name="M:SyntaxParserAPI.Token.#ctor(SyntaxParserAPI.Lexem,System.String)">
+            <summary>Инициализирует новый экземпляр класса Token.</summary>
+            <param name="lexem">Шаблон регулярного выражения <see cref="T:SyntaxParserAPI.Lexem" /> .</param>
+            <param name="value">Реальное значение Токена в виде <see cref="T:System.String" /> .</param>
+        </member>
+        <member name="P:SyntaxParserAPI.Token.Lexem">
+            <summary>Возврщает шаблон регулярного выражения .</summary>
+            <value>Шаблон регулярного выражения <see cref="T:SyntaxParserAPI.Lexem" />.</value>
+        </member>
+        <member name="P:SyntaxParserAPI.Token.Value">
+            <summary>Реальное значение Токена.</summary>
+            <value>Реальное значение Токена <see cref="T:System.String"  />.</value>
+        </member>
+        <member name="M:SyntaxParserAPI.Token.SameAs(SyntaxParserAPI.Token)">
+            <summary>Проверяет по значению, является ли полученный токен одинаковым с this.</summary>
+            <param name="other">Другой токен.</param>
+            <returns>true если токены одинаковы; иначе false</returns>
+        </member>
+        <member name="M:SyntaxParserAPI.Token.ToString">
+            <summary>Конвертирует токен в строку.</summary>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+        </member>
+    </members>
+</doc>

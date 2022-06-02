@@ -67,6 +67,66 @@ namespace TestSyntaxParser
             Assert.AreEqual(true, same);
         }
 
+        [TestMethod]
+        public void Test6()
+        {
+            var text = "pow(sin(4), 2) + pow(cos(4), 2)";
+            var expected = 1;
+            var expectedDelta = 0.0000000000001;
+
+            var same = DoTestTemplate(text, expected, expectedDelta);
+
+            Assert.AreEqual(true, same);
+        }
+
+        [TestMethod]
+        public void Test7()
+        {
+            var text = "(pow(1,3) + pow(12, 3) + pow(9, 3) + pow(10,3))/2";
+            var expected = 1729;
+            var expectedDelta = 0.0000000000001;
+
+            var same = DoTestTemplate(text, expected, expectedDelta);
+
+            Assert.AreEqual(true, same);
+        }
+
+        [TestMethod]
+        public void Test8()
+        {
+            var text = "sqrt(sqrt(sqrt(sqrt(pow(pow(pow(pow(3 ,2) ,2) ,2) ,2)))))";
+            var expected = 3;
+            var expectedDelta = 0.0000000000001;
+
+            var same = DoTestTemplate(text, expected, expectedDelta);
+
+            Assert.AreEqual(true, same);
+        }
+
+        [TestMethod]
+        public void TestCircleLength()
+        {
+            var text = "2 * PI * 4";
+            var expected = 25.13274122871834590770114706623602307357735519;
+            var expectedDelta = 0.0000000000001;
+
+            var same = DoTestTemplate(text, expected, expectedDelta);
+
+            Assert.AreEqual(true, same);
+        }
+
+        [TestMethod]
+        public void TestInfiniteUnaryMinus()
+        {
+            var text = "------------------------------------1";
+            var expected = 1;
+            var expectedDelta = 0.0000000000001;
+
+            var same = DoTestTemplate(text, expected, expectedDelta);
+
+            Assert.AreEqual(true, same);
+        }
+
         private bool DoTestTemplate(string text, double expected, double expectedDelta)
         {
             var parsedTokens = Parser.Parse(text);

@@ -174,6 +174,10 @@ namespace SyntaxParserAPI
             {
                 return true;
             }
+            else if (Sqrt())
+            {
+                return true;
+            }
 
             return false;
         }
@@ -201,7 +205,7 @@ namespace SyntaxParserAPI
             {
                 return true;
             }
-
+            
             return false;
         }
         private bool Digit()
@@ -270,6 +274,10 @@ namespace SyntaxParserAPI
         private bool Pow()
         {
             return Match(GetNextToken(), Lexem.POW);
+        }
+        private bool Sqrt()
+        {
+            return Match(GetNextToken(), Lexem.SQRT);
         }
 
         private bool Match(Token currentToken, Lexem requiredLexem)
